@@ -6,71 +6,96 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests unitarios de ProductoDigital.
+ * Tests unitarios de Pedido.
  */
-class ProductoDigitalTest {
+class PedidoTest {
 
     /**
-     * Verifica cálculo correcto del IVA general.
+     * Verifica el cálculo correcto del total del pedido.
      */
     @Test
-    @DisplayName("Calculo correcto del IVA general")
-    void ivaGeneralCorrecto() {
+    @DisplayName("Calculo correcto del total del pedido")
+    void totalPedido() {
 
-        ProductoDigital producto =
+        Cliente cliente =
+                new Cliente(1, "Juan", 3, false, "España");
+
+        Pedido pedido = new Pedido(1, cliente);
+
+        ProductoDigital prodDig =
                 new ProductoDigital(1, "Juego", 100, "GENERAL");
 
-        assertEquals(121,producto.calcularPrecioFinal(),0.1,"El precio final debe ser 121");
+        ProductoFisico prodFis =
+                new ProductoFisico(2, "Libro", 50, 2);
+
+        pedido.agregarProducto(prodDig);
+        pedido.agregarProducto(prodFis);
+
+        assertTrue(
+                pedido.calcularTotal() > 0,
+                "El total del pedido debe ser mayor que 0"
+        );
     }
 
     /**
-     * Verifica que el precio final sea mayor
-     * tras aplicar IVA.
+     * Verifica que un pedido nuevo empieza vacío.
      */
     @Test
-    @DisplayName("Precio final mayor que precio base")
-    void precioMayorQueOriginal() {
+    @DisplayName("Error: pedido sin productos")
+    void pedidoVacio() {
 
-        ProductoDigital producto = new ProductoDigital(2, "Software", 50, "GENERAL");
+        Cliente cliente =
+                new Cliente(2, "Ana", 1, false, "España");
 
-        assertTrue(producto.calcularPrecioFinal() > 50,"El precio final debe ser mayor que el original");
+        Pedido pedido = new Pedido(2, cliente);
+
+        assertEquals(
+                0,
+                pedido.getProductos().size(),
+                "El pedido debe empezar sin productos"
+        );
     }
 
     /**
-     * Verifica que el precio final no sea igual
-     * al precio base.
+     * Verifica excepción al calcular pedido vacío.
+     *
+     * REGRESION:
+     * Corrección tras fallo en integración maestra.
      */
     @Test
-    @DisplayName("Error: precio final distinto al base")
-    void precioNoIgual() {
+    @DisplayName("Error: calcular total de pedido sin productos")
+    void pedidoSinProductos() {
+
+        Cliente cliente =
+                new Cliente(1, "Juan", 2, false, "España");
+
+        Pedido pedido = new Pedido(1, cliente);
+
+        assertThrows(
+                IllegalStateException.class,
+                pedido::calcularTotal
+        );
+    }
+
+    /**
+     * Verifica eliminación dinámica de productos.
+     */
+    @Test
+    @DisplayName("Eliminar producto del pedido")
+    void eliminarProductoPedido() {
+
+        Cliente cliente =
+                new Cliente(3, "Luis", 4, false, "España");
+
+        Pedido pedido = new Pedido(3, cliente);
 
         ProductoDigital producto =
-                new ProductoDigital(3, "App", 100, "GENERAL");
+                new ProductoDigital(1, "Curso", 80, "REDUCIDO");
 
-        assertFalse(producto.calcularPrecioFinal() == 100,"El precio final no debe ser igual al precio base");
-    }
+        pedido.agregarProducto(producto);
 
-    /**
-     * Verifica IVA reducido.
-     */
-    @Test
-    @DisplayName("Calculo correcto del IVA reducido")
-    void ivaReducidoCorrecto() {
+        pedido.eliminarProducto(producto);
 
-        ProductoDigital producto = new ProductoDigital(4, "Ebook", 100, "REDUCIDO");
-
-        assertEquals(110,producto.calcularPrecioFinal(),0.1);
-    }
-
-    /**
-     * Verifica IVA superreducido.
-     */
-    @Test
-    @DisplayName("Calculo correcto del IVA superreducido")
-    void ivaSuperReducidoCorrecto() {
-
-        ProductoDigital producto = new ProductoDigital(5, "Revista", 100, "SUPER");
-
-        assertEquals(104,producto.calcularPrecioFinal(),0.1);
+        assertEquals(0, pedido.getProductos().size());
     }
 }
