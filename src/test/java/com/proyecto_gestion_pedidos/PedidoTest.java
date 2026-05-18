@@ -5,9 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests unitarios de Pedido.
- */
+
 class PedidoTest {
 
     /**
@@ -17,24 +15,18 @@ class PedidoTest {
     @DisplayName("Calculo correcto del total del pedido")
     void totalPedido() {
 
-        Cliente cliente =
-                new Cliente(1, "Juan", 3, false, "España");
+        Cliente cliente = new Cliente(1, "Juan", 3, false, "España");
 
         Pedido pedido = new Pedido(1, cliente);
 
-        ProductoDigital prodDig =
-                new ProductoDigital(1, "Juego", 100, "GENERAL");
+        ProductoDigital prodDig = new ProductoDigital(1, "Juego", 100, "GENERAL");
 
-        ProductoFisico prodFis =
-                new ProductoFisico(2, "Libro", 50, 2);
+        ProductoFisico prodFis = new ProductoFisico(2, "Libro", 50, 2);
 
         pedido.agregarProducto(prodDig);
         pedido.agregarProducto(prodFis);
 
-        assertTrue(
-                pedido.calcularTotal() > 0,
-                "El total del pedido debe ser mayor que 0"
-        );
+        assertTrue(pedido.calcularTotal() > 0,"El total del pedido debe ser mayor que 0");
     }
 
     /**
@@ -44,16 +36,11 @@ class PedidoTest {
     @DisplayName("Error: pedido sin productos")
     void pedidoVacio() {
 
-        Cliente cliente =
-                new Cliente(2, "Ana", 1, false, "España");
+        Cliente cliente = new Cliente(2, "Ana", 1, false, "España");
 
         Pedido pedido = new Pedido(2, cliente);
 
-        assertEquals(
-                0,
-                pedido.getProductos().size(),
-                "El pedido debe empezar sin productos"
-        );
+        assertEquals(0,pedido.getProductos().size(),"El pedido debe empezar sin productos");
     }
 
     /**
@@ -66,15 +53,11 @@ class PedidoTest {
     @DisplayName("Error: calcular total de pedido sin productos")
     void pedidoSinProductos() {
 
-        Cliente cliente =
-                new Cliente(1, "Juan", 2, false, "España");
+        Cliente cliente = new Cliente(1, "Juan", 2, false, "España");
 
         Pedido pedido = new Pedido(1, cliente);
 
-        assertThrows(
-                IllegalStateException.class,
-                pedido::calcularTotal
-        );
+        assertThrows(IllegalStateException.class,pedido::calcularTotal);
     }
 
     /**
@@ -84,13 +67,11 @@ class PedidoTest {
     @DisplayName("Eliminar producto del pedido")
     void eliminarProductoPedido() {
 
-        Cliente cliente =
-                new Cliente(3, "Luis", 4, false, "España");
+        Cliente cliente = new Cliente(3, "Luis", 4, false, "España");
 
         Pedido pedido = new Pedido(3, cliente);
 
-        ProductoDigital producto =
-                new ProductoDigital(1, "Curso", 80, "REDUCIDO");
+        ProductoDigital producto = new ProductoDigital(1, "Curso", 80, "REDUCIDO");
 
         pedido.agregarProducto(producto);
 

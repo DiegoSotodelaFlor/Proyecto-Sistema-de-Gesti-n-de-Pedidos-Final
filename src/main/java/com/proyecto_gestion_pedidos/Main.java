@@ -5,38 +5,17 @@ public class Main {
     public static void main(String[] args) {
 
         // Crear cliente
-        Cliente cliente = new Cliente(
-                1,
-                "Juan Pérez",
-                6,
-                true,
-                "España"
-        );
+        Cliente cliente = new Cliente(1,"Juan Pérez",6,true,"España");
 
         // Crear productos
         ProductoDigital juegoDigital =
-                new ProductoDigital(
-                        1,
-                        "God Of War",
-                        59.99,
-                        "GENERAL"
-                );
+                new ProductoDigital(1,"God Of War",59.99,"GENERAL");
 
         ProductoFisico teclado =
-                new ProductoFisico(
-                        2,
-                        "Teclado Mecánico",
-                        120.00,
-                        2.5
-                );
+                new ProductoFisico(2,"Teclado Mecánico",120.00,2.5);
 
         ProductoFisico monitor =
-                new ProductoFisico(
-                        3,
-                        "Monitor Gaming",
-                        250.00,
-                        5
-                );
+                new ProductoFisico(3,"Monitor Gaming",250.00,5);
 
         // Crear pedido
         Pedido pedido = new Pedido(1001, cliente);
@@ -47,7 +26,7 @@ public class Main {
         pedido.agregarProducto(monitor);
 
         // Mostrar productos añadidos
-        System.out.println("========== PEDIDO ==========");
+        System.out.println("----------PEDIDO----------");
         System.out.println("Cliente: " + cliente.getNombre());
         System.out.println("País: " + cliente.getPais());
 
@@ -87,7 +66,7 @@ public class Main {
         Factura factura = tienda.realizarVenta(cliente, pedido);
 
         // Mostrar factura
-        System.out.println("\n========== FACTURA ==========");
+        System.out.println("\n***********FACTURA***********");
         System.out.println("Código factura: "
                 + factura.getCodigoFactura());
 

@@ -5,26 +5,17 @@ public class MainRobustez {
     public static void main(String[] args) {
 
         // Crear cliente
-        Cliente cliente = new Cliente(
-                1,
-                "Juan Pérez",
-                6,
-                true,
-                "España"
-        );
+        Cliente cliente = new Cliente( 1,"Juan Pérez",6,true,"España");
 
-        System.out.println("===== PRUEBA DE ROBUSTEZ =====");
+        System.out.println("----- PRUEBA DE ROBUSTEZ ------");
 
         //Precio negativo
         try {
 
-            System.out.println("\n[TEST 1] Creando producto con precio negativo...");
+            System.out.println("\n--TEST 1-- Creando producto con precio negativo...");
 
             ProductoDigital productoErroneo =
-                    new ProductoDigital(
-                            10,
-                            "Juego Bug",
-                            -50.0, //precio inválido
+                    new ProductoDigital( 10,"Juego Bug",-50.0, //precio inválido
                             "GENERAL"
                     );
 
@@ -40,7 +31,7 @@ public class MainRobustez {
         
         try {
 
-            System.out.println("\n[TEST 2] Creando pedido vacío...");
+            System.out.println("\n--TEST 2-- Creando pedido vacío...");
 
             Pedido pedidoVacio = new Pedido(2002, cliente);
 
@@ -60,6 +51,6 @@ public class MainRobustez {
             System.out.println("   " + e.getMessage());
         }
 
-        System.out.println("\n===== FIN PRUEBA DE ROBUSTEZ =====");
+        System.out.println("\n-----------FIN PRUEBA DE ROBUSTEZ---------");
     }
 }
