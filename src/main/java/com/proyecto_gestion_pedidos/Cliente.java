@@ -93,19 +93,9 @@ public class Cliente {
             return 0.05;
         }
         //si ni no se cumple ninguna no hay descuento
-        return 0;
+        return 0.0;
     }
 
 
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", nombre='" + getNombre() + "'" +
-            ", aniosAntiguedad='" + getAniosAntiguedad() + "'" +
-            ", vip='" + isVip() + "'" +
-            ", pais='" + getPais() + "'" +
-            "}";
-    }
     
 }

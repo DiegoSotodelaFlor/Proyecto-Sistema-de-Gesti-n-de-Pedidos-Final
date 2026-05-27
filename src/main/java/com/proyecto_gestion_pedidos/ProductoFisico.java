@@ -31,9 +31,7 @@ public class ProductoFisico extends Producto {
             case "españa":
                 return 0;
             //si el país es Francia, Italia o Portugal el coste de envío es 5
-            case "francia":
-            case "italia":
-            case "portugal":
+            case "francia", "italia", "portugal":
                 return 5;
             //si el país es no es ninguno de los anteriores el coste de envío es 10
             default:

@@ -50,9 +50,7 @@ public class Pedido {
             //sumamos su precio final al precio tatl del pedido
             total += producto.calcularPrecioFinal();
             //
-            if (producto instanceof ProductoFisico) {
-
-                ProductoFisico pf = (ProductoFisico) producto;
+            if (producto instanceof ProductoFisico pf) {
 
                 total += pf.calcularCosteEnvio(cliente.getPais());
             }
