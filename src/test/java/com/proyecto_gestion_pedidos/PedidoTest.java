@@ -1,7 +1,8 @@
 package com.proyecto_gestion_pedidos;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -78,5 +79,32 @@ class PedidoTest {
         pedido.eliminarProducto(producto);
 
         assertEquals(0, pedido.getProductos().size());
+    }
+    @Test
+    @DisplayName("Pedido Internacional con Producto Físico")
+    void totalPedidoInternacionalFisico() {
+        // Forzamos a que el cliente sea de Francia para que sume el envío en el bucle del pedido
+        Cliente clienteExtranjero = new Cliente(10, "Pierre", 0, false, "Francia");
+        Pedido pedido = new Pedido(10, clienteExtranjero);
+
+        // Producto Físico: Base 100 + IVA (21) = 121. Envío a Francia = 5. Total = 126
+        ProductoFisico fisico = new ProductoFisico(1, "Mesa", 100, 15.0);
+        pedido.agregarProducto(fisico);
+
+        assertEquals(126.0, pedido.calcularTotal(), 0.001);
+    }
+
+    @Test
+    @DisplayName("Getters y Setters de Pedido")
+    void testGettersSettersPedido() {
+        Cliente c1 = new Cliente(1, "A", 1, false, "España");
+        Cliente c2 = new Cliente(2, "B", 2, false, "España");
+        Pedido pedido = new Pedido(1, c1);
+        
+        pedido.setIdPedido(55);
+        pedido.setCliente(c2);
+
+        assertEquals(55, pedido.getIdPedido());
+        assertEquals(c2, pedido.getCliente());
     }
 }

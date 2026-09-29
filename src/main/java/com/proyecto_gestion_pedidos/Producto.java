@@ -15,7 +15,7 @@ public abstract class Producto {
      * @param precioBase base price
      * @throws IllegalArgumentException if precioBase is negative
      */
-    public Producto(int id, String nombre, double precioBase) {
+    protected Producto(int id, String nombre, double precioBase) {
         if (precioBase < 0) {
             throw new IllegalArgumentException("El precio no puede ser negativo");
         }

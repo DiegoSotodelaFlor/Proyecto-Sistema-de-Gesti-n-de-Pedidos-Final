@@ -1,7 +1,8 @@
 package com.proyecto_gestion_pedidos;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +44,7 @@ class ProductoDigitalTest {
 
         ProductoDigital producto = new ProductoDigital(3, "App", 100, "GENERAL");
 
-        assertFalse(producto.calcularPrecioFinal() == 100,"El precio final no debe ser igual al precio base");
+        assertNotEquals(100, producto.calcularPrecioFinal(),"El precio final no debe ser igual al precio base");
     }
 
     /**
@@ -68,5 +69,40 @@ class ProductoDigitalTest {
         ProductoDigital producto = new ProductoDigital(5, "Revista", 100, "SUPER");
 
         assertEquals(104,producto.calcularPrecioFinal(),0.1);
+    }
+    @Test
+    @DisplayName("Caso SUPER")
+    void ivaSuperCorrecto() {
+        ProductoDigital producto = new ProductoDigital(5, "Revista Digital", 100, "SUPER");
+        assertEquals(104, producto.calcularPrecioFinal(), 0.1);
+    }
+
+    @Test
+    @DisplayName("Ignorar mayúsculas/minúsculas")
+    void ivaMinusculas() {
+        ProductoDigital producto = new ProductoDigital(6, "Ebook", 100, "reducido");
+        assertEquals(110, producto.calcularPrecioFinal(), 0.1);
+    }
+
+    @Test
+    @DisplayName("Rama DEFAULT (IVA Desconocido aplica General)")
+    void ivaDefaultDesconocido() {
+        ProductoDigital producto = new ProductoDigital(7, "Token", 100, "INVENTADO");
+        assertEquals(121, producto.calcularPrecioFinal(), 0.1);
+    }
+
+    @Test
+    @DisplayName("Getters y Setters de ProductoDigital")
+    void testGettersSettersDigital() {
+        ProductoDigital producto = new ProductoDigital(1, "A", 10, "GENERAL");
+        producto.setId(2);
+        producto.setNombre("B");
+        producto.setPrecioBase(20.0);
+        producto.setTipoIva("SUPER");
+
+        assertEquals(2, producto.getId());
+        assertEquals("B", producto.getNombre());
+        assertEquals(20.0, producto.getPrecioBase(), 0.001);
+        assertEquals("SUPER", producto.getTipoIva());
     }
 }
