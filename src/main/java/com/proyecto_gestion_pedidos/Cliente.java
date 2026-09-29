@@ -1,7 +1,7 @@
 package com.proyecto_gestion_pedidos;
 
-public class Cliente {
 
+public class Cliente {
     private int id;
     private String nombre;
     private int aniosAntiguedad;
@@ -9,13 +9,13 @@ public class Cliente {
     private String pais;
 
     /**
-     * Constructor de cliente.
+     * Constructs a new Cliente instance with full parameters.
      *
-     * @param id identificador
-     * @param nombre nombre del cliente
-     * @param aniosAntiguedad años de antigüedad
-     * @param vip indica si es VIP
-     * @param pais país del cliente
+     * @param id              customer identification number
+     * @param nombre          full name of the customer
+     * @param aniosAntiguedad years of customer loyalty
+     * @param vip             true if the customer is a VIP, false otherwise
+     * @param pais            country of residence
      */
     public Cliente(int id, String nombre, int aniosAntiguedad, boolean vip, String pais) {
         this.id = id;
@@ -24,92 +24,137 @@ public class Cliente {
         this.vip = vip;
         this.pais = pais;
     }
-    // Getters y setters
 
+    /**
+     * Gets the customer ID.
+     *
+     * @return the customer identifier
+     */
     public int getId() {
         return this.id;
     }
 
+    /**
+     * Sets the customer ID.
+     *
+     * @param id the unique customer identifier to set
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Gets the customer name.
+     *
+     * @return the name of the customer
+     */
     public String getNombre() {
         return this.nombre;
     }
 
+    /**
+     * Sets the customer name.
+     *
+     * @param nombre the name to set
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Gets the years of seniority.
+     *
+     * @return number of years as customer
+     */
     public int getAniosAntiguedad() {
         return this.aniosAntiguedad;
     }
 
+    /**
+     * Sets the years of seniority.
+     *
+     * @param aniosAntiguedad years of registration to set
+     */
     public void setAniosAntiguedad(int aniosAntiguedad) {
         this.aniosAntiguedad = aniosAntiguedad;
     }
 
+    /**
+     * Checks if the customer is VIP.
+     *
+     * @return true if VIP status is active, false otherwise
+     */
     public boolean isVip() {
         return this.vip;
     }
 
+    /**
+     * Gets VIP status flag.
+     *
+     * @return boolean flag indicating VIP status
+     */
     public boolean getVip() {
         return this.vip;
     }
 
+    /**
+     * Sets VIP status for the customer.
+     *
+     * @param vip status flag to set
+     */
     public void setVip(boolean vip) {
         this.vip = vip;
     }
 
+    /**
+     * Gets customer country.
+     *
+     * @return country name
+     */
     public String getPais() {
         return this.pais;
     }
 
+    /**
+     * Sets customer country.
+     *
+     * @param pais country name to set
+     */
     public void setPais(String pais) {
         this.pais = pais;
     }
-    
 
     /**
-     * Calcula descuento de fidelidad.
-     *
-     * @return porcentaje de descuento
+     * Calculates the loyalty discount percentage based on VIP status and seniority.
+     **
+     * @return discount percentage as a double value between 0.0 and 0.15
      */
     public double calcularDescuento() {
-        //si es vip y tiene más de 4 años de antigüedad
         if (vip && aniosAntiguedad >= 5) {
-            // descuento del 15%
             return 0.15;
         }
-        //si solo es vip
         if (vip) {
-            //descuento del 10%
             return 0.10;
         }
-        //si solo tiene más de 4 años de antigüedad
         if (aniosAntiguedad >= 5) {
-            //descuento del 5%
             return 0.05;
         }
-        //si ni no se cumple ninguna no hay descuento
         return 0;
     }
+
 /**
  * Returns a string representation of the customer object.
  *
  * @return formatted string containing customer details
  */
-
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", nombre='" + getNombre() + "'" +
-            ", aniosAntiguedad='" + getAniosAntiguedad() + "'" +
-            ", vip='" + isVip() + "'" +
-            ", pais='" + getPais() + "'" +
-            "}";
-    }
-    
+@Override
+public String toString() {
+    return "{" +
+        " id='" + getId() + "'" +
+        ", nombre='" + getNombre() + "'" +
+        ", aniosAntiguedad='" + getAniosAntiguedad() + "'" +
+        ", vip='" + isVip() + "'" +
+        ", pais='" + getPais() + "'" +
+        "}";
+}
 }
