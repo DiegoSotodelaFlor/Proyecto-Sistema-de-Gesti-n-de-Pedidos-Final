@@ -4,7 +4,14 @@ package com.proyecto_gestion_pedidos;
 public class ProductoFisico extends Producto {
 
     private double peso;
-
+    /**
+     * Constructs a physical product.
+     *
+     * @param id product ID
+     * @param nombre product name
+     * @param precioBase base price
+     * @param peso weight in kg
+     */
     public ProductoFisico(int id, String nombre, double precioBase, double peso) {
         super(id, nombre, precioBase);
         this.peso = peso;

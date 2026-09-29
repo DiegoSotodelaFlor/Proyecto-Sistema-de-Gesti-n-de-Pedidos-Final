@@ -95,7 +95,11 @@ public class Cliente {
         //si ni no se cumple ninguna no hay descuento
         return 0;
     }
-
+/**
+ * Returns a string representation of the customer object.
+ *
+ * @return formatted string containing customer details
+ */
 
     @Override
     public String toString() {

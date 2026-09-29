@@ -8,7 +8,12 @@ public class Pedido {
     private int idPedido;
     private Cliente cliente;
     private List<Producto> productos;
-
+    /**
+     * Constructs a new order for a given customer.
+     *
+     * @param idPedido unique order ID
+     * @param cliente target customer
+     */
     public Pedido(int idPedido, Cliente cliente) {
         this.idPedido = idPedido;
         this.cliente = cliente;

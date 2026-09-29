@@ -13,8 +13,14 @@ public class Factura {
     private double totalFinal;
 
     /**
-     * Constructor factura.
-     */
+/**
+     * Constructs a Factura instance with auto-generated code and current date.
+     *
+     * @param totalNeto net total amount
+     * @param totalIva VAT total amount
+     * @param totalEnvio shipping cost amount
+     * @param totalFinal final total price
+     */     
     public Factura(double totalNeto, double totalIva,
                    double totalEnvio, double totalFinal) {
 

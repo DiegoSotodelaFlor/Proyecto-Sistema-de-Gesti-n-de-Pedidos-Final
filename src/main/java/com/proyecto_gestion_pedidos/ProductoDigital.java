@@ -3,7 +3,14 @@ package com.proyecto_gestion_pedidos;
 public class ProductoDigital extends Producto {
 
     private String tipoIva;
-
+    /**
+     * Constructs a digital product.
+     *
+     * @param id product identifier
+     * @param nombre product name
+     * @param precioBase base price
+     * @param tipoIva VAT category string
+     */
     public ProductoDigital(int id, String nombre, double precioBase, String tipoIva) {
         super(id, nombre, precioBase);
         this.tipoIva = tipoIva;

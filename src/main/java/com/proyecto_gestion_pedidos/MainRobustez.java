@@ -1,6 +1,12 @@
 package com.proyecto_gestion_pedidos;
 
 public class MainRobustez {
+    /**
+     * Main execution method. Demonstrates creation of customers, digital and physical products,
+     * order processing, and final invoice generation.
+     *
+     * @param args command line arguments (not used)
+     */
 
     public static void main(String[] args) {
 
