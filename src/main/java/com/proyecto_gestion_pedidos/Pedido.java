@@ -4,11 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
-
     private int idPedido;
     private Cliente cliente;
-    private List<Producto> productos;
+    private List productos;
 
+    /**
+     * Constructs a new order for a given customer.
+     *
+     * @param idPedido unique order ID
+     * @param cliente target customer
+     */
     public Pedido(int idPedido, Cliente cliente) {
         this.idPedido = idPedido;
         this.cliente = cliente;
@@ -16,71 +21,95 @@ public class Pedido {
     }
 
     /**
-     * Añade producto al pedido.
+     * Adds a product to the order list.
      *
-     * @param producto producto
+     * @param producto product instance to add
      */
     public void agregarProducto(Producto producto) {
         productos.add(producto);
     }
 
     /**
-     * Elimina producto del pedido.
+     * Removes a product from the order list.
      *
-     * @param producto producto
+     * @param producto product instance to remove
      */
     public void eliminarProducto(Producto producto) {
         productos.remove(producto);
     }
 
     /**
-     * Calcula total del pedido.
+     * Calculates total price of all items in the order, including individual shipping for physical items.
      *
-     * @return total
+     * @return combined price total
+     * @throws IllegalStateException if the order contains no products
      */
     public double calcularTotal() {
-
         if (productos.isEmpty()) {
             throw new IllegalStateException("Pedido sin productos");
         }
-        //creamos la variable total
         double total = 0;
-        //por cada producto
         for (Producto producto : productos) {
-            //sumamos su precio final al precio tatl del pedido
             total += producto.calcularPrecioFinal();
-            //
-            if (producto instanceof ProductoFisico pf) {
-
+            if (producto instanceof ProductoFisico) {
+                ProductoFisico pf = (ProductoFisico) producto;
                 total += pf.calcularCosteEnvio(cliente.getPais());
             }
         }
-
         return total;
     }
 
+    /**
+     * Gets order ID.
+     *
+     * @return order identifier
+     */
     public int getIdPedido() {
         return this.idPedido;
     }
 
+    /**
+     * Sets order ID.
+     *
+     * @param idPedido identifier to set
+     */
     public void setIdPedido(int idPedido) {
         this.idPedido = idPedido;
     }
 
+    /**
+     * Gets assigned customer.
+     *
+     * @return customer object
+     */
     public Cliente getCliente() {
         return this.cliente;
     }
 
+    /**
+     * Sets customer for the order.
+     *
+     * @param cliente customer to assign
+     */
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
-    public List<Producto> getProductos() {
+    /**
+     * Gets product list in order.
+     *
+     * @return list of products
+     */
+    public List getProductos() {
         return this.productos;
     }
 
-    public void setProductos(List<Producto> productos) {
+    /**
+     * Sets the list of products.
+     *
+     * @param productos list of products to set
+     */
+    public void setProductos(List productos) {
         this.productos = productos;
     }
-    
 }

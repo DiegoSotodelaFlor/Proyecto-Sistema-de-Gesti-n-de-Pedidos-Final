@@ -4,52 +4,64 @@ public class ProductoDigital extends Producto {
 
     private String tipoIva;
 
+    /**
+     * Constructs a digital product.
+     *
+     * @param id product identifier
+     * @param nombre product name
+     * @param precioBase base price
+     * @param tipoIva VAT category string
+     */
     public ProductoDigital(int id, String nombre, double precioBase, String tipoIva) {
         super(id, nombre, precioBase);
         this.tipoIva = tipoIva;
     }
-    //getters y setters
 
+    /**
+     * Gets VAT type string.
+     *
+     * @return VAT category
+     */
     public String getTipoIva() {
         return this.tipoIva;
     }
 
+    /**
+     * Sets VAT type string.
+     *
+     * @param tipoIva VAT category to set
+     */
     public void setTipoIva(String tipoIva) {
         this.tipoIva = tipoIva;
     }
 
     /**
-     * Aplica IVA según tipo.
+     * Applies dynamic VAT rate based on the assigned VAT category string.
      *
-     * @return precio con IVA
+     * @return calculated total price with VAT
      */
     public double aplicarIVA() {
-        //creamos la avriable iva
         double iva;
-        switch (tipoIva.toUpperCase()) { //convertimos el iva a mayúsculas
-            //si es GENERAL el iva es del 21%
+        switch (tipoIva.toUpperCase()) {
             case "GENERAL":
                 iva = 0.21;
-                break; //TERMINA
-            //si es REDUCIDO el iva es del 10%
+                break;
             case "REDUCIDO":
                 iva = 0.10;
-                break; //TERMINA
-            //si es SUPER el iva es del 4%
+                break;
             case "SUPER":
                 iva = 0.04;
-                break; //TERMINA
-            // por defecto el iva es del 21%
+                break;
             default:
                 iva = 0.21;
         }
-        //devolvemos el precio base más el precio por el iva
         return getPrecioBase() + (getPrecioBase() * iva);
     }
+
     /**
-     * Calcula el precio final.
+     * Calculates final total price.
      *
-     * @return precio final con iva aplicado
+     * @return price after applying corresponding VAT
      */
     @Override
     public double calcularPrecioFinal() {
