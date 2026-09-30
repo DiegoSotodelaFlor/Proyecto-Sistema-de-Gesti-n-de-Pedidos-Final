@@ -1,4 +1,3 @@
-Markdown
 # Order Management System (com.proyecto_gestion_pedidos)
 
 ## Overview
@@ -24,10 +23,10 @@ Before running or building this application, ensure you have the following insta
 ## Installation & Setup Instructions
 
 1. **Clone the repository:**
-   git clone [https://github.com/your-username/your-repository-name.git](https://github.com/your-username/your-repository-name.git)
+   git clone [https://github.com/DiegoSotodelaFlor/Proyecto-Sistema-de-Gesti-n-de-Pedidos-Final.git](https://github.com/DiegoSotodelaFlor/Proyecto-Sistema-de-Gesti-n-de-Pedidos-Final.git)
 
 Navigate to the project root directory:
-cd your-repository-name
+cd "place where you cloned the repository"/Proyecto-Sistema-de-Gesti-n-de-Pedidos-Final
 Compile the project:
 
 Using javac directly:
